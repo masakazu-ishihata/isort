@@ -35,7 +35,6 @@ void isort(void *_a, size_t _n, size_t _d, int (*_comp)(const void *, const void
 int *iargsort(void *_a, size_t _n, size_t _d, int (*_comp)(const void *, const void *));
 void isort_by(void *_a, size_t _n, size_t _d, int *_p);
 
-
 /*------------------------------------*/
 /* swap */
 /*------------------------------------*/

@@ -77,25 +77,25 @@ int *iargsort(void *_a, size_t _n, size_t _d, int (*_comp)(const void *, const v
 /*------------------------------------*/
 void isort_by(void *_a, size_t _n, size_t _d, int *_p)
 {
-  int i, j, k, l;
+  int i, j, k;
   int  *p = (int *)calloc(_n, sizeof(int));
   int  *r = (int *)calloc(_n, sizeof(int));
 
-  /* permutation / reverse permutation */
+  /* init */
   for(i=0; i<_n; i++){
-    p[i] = _p[i];
-    r[_p[i]] = i;
+    p[i] = _p[i]; /* permutation */
+    r[_p[i]] = i; /* reverse permutation */
   }
 
   /* decompose permutation */
-  for(j=_n-1; j>=0; j--){
-    k = r[j]; /* p[k] = j */
-    l = p[j]; /* r[l] = j */
+  for(i=0; i<_n; i++){
+    j = p[i]; /* p[j] = i */
+    k = r[i]; /* r[k] = i */
 
     /* swap a[j] <-> a[l] */
-    void_swap(_a+_d*j, _a+_d*l, _d);
-    void_swap(&p[j], &p[k], sizeof(int));
-    void_swap(&r[j], &r[l], sizeof(int));
+    void_swap(_a+_d*i, _a+_d*j, _d);
+    void_swap(&p[i], &p[k], sizeof(int));
+    void_swap(&r[i], &r[j], sizeof(int));
   }
 
   /* free */
