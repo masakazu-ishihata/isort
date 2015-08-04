@@ -7,16 +7,45 @@
 
 ## 使い方
 
-    void isort(void *_a, size_t _n, size_t _d, int (*_comp)(const void *, const void *))
+### sort
 
-長さ _n, 要素サイズ _d の 配列 _a を比較関数 _comp を元にソートを行う。
+    void isort(void *_base, size_t _num, size_t _size, int (*_comp)(const void *, const void *));
 
-    void iargsort(int *_arg, void *_a, size_t _n, size_t _d, int (*_comp)(const void *, const void *))
+要素数 _num, 要素サイズ _size の配列 _base を比較関数 _comp の元でソートする。
+
+    void isort_by(void *_base, size_t _num, size_t _size, int *_perm);
+
+要素数 _num, 要素サイズ _size の配列 _base を順列 _perm の元でソートする。
+
+    void isort_by_random(void *_base, size_t _num, size_t _size);
+
+要素数 _num, 要素サイズ _size の配列 _base をランダムに並び替える。
+
+    void isort_by_partition(void *_base, size_t _num, size_t _size, int _pnum, int *_part);
+
+要素数 _num, 要素サイズ _size の配列 _base を分割 _part の元でソートする。
+
+    void isort_by_permutation(void *_base, size_t _num, size_t _size, int *_perm);
+
+要素数 _num, 要素サイズ _size の配列 _base を順列 _perm の元でソートする。  
+isort_by と等価。
 
 
-長さ _n, 要素サイズ _d の 配列 _a を比較関数 _comp を元にソートしたときのインデックスの順列を _arg に格納する。
+### arg
+
+    void iargsort(int *_args, void *_base, size_t _num, size_t _size, int (*_comp)(const void *, const void *));
+
+要素数 _num, 要素サイズ _size の配列 _base のインデックス配列 _args を比較関数 _comp の元でソートする。
+
+    int iargmax(void *_base, size_t _num, size_t _size, int (*_comp)(const void *, const void *));
+    int iargmin(void *_base, size_t _num, size_t _size, int (*_comp)(const void *, const void *));
+
+要素数 _num, 要素サイズ _size の配列 _base 中の比較関数 _comp の元で最大/最小の要素のインデックスを返す。
 
 
-    void isort_by(void *_a, size_t _n, size_t _d, int *_p);
+### uniq
 
-長さ _n, 要素サイズ _d の 配列 _a を順列 _p を元に並び替える。
+    size_t iuniq(void *_base, size_t _num, size_t _size, int (*_comp)(const void *, const void *));
+
+要素数 _num, 要素サイズ _size の配列 _base 中に登場する要素を比較関数 _comp の元で比較し、  
+ユニークな要素数を返す。さらにそれらのユニークな要素を配列の先頭に固める。
